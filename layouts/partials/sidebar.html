@@ -13,16 +13,34 @@
         alt="profile picture"
       />
       {{ if .IsHome }}
-        <h1 class="sidebar__introduction-title">
+      <h1 class="sidebar__introduction-title">
+        {{ if eq .Site.Language.LanguageName "Chinese" }}
+          <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.TitleCN }}</a>
+        {{ else if eq .Site.Language.LanguageName "English" }}
+          <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.TitleEN }}</a>
+        {{ else }}
           <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.Title }}</a>
-        </h1>
+        {{ end }}
+      </h1>
       {{ else }}
-        <div class="sidebar__introduction-title">
+      <div class="sidebar__introduction-title">
+        {{ if eq .Site.Language.LanguageName "Chinese" }}
+          <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.TitleCN }}</a>
+        {{ else if eq .Site.Language.LanguageName "English" }}
+          <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.TitleEN }}</a>
+        {{ else }}
           <a href="{{ .Site.BaseURL | relLangURL }}">{{ .Site.Params.Title }}</a>
-        </div>
+        {{ end }}
+      </div>
       {{ end }}
       <div class="sidebar__introduction-description">
-        <p>{{ replace .Site.Params.description "\n" "<br />" | safeHTML }}</p>
+        {{ if eq .Site.Language.LanguageName "Chinese" }}
+          <p>{{ replace .Site.Params.descriptionCN "\n" "<br />" | safeHTML }}</p>
+        {{ else if eq .Site.Language.LanguageName "English" }}
+          <p>{{ replace .Site.Params.descriptionEN "\n" "<br />" | safeHTML }}</p>
+        {{ else }}
+          <p>{{ replace .Site.Params.description "\n" "<br />" | safeHTML }}</p>
+        {{ end }}
       </div>
     </div>
     <ul class="sidebar__list">
